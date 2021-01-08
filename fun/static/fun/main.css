@@ -1,7 +1,7 @@
 body {
   background: #fafafa;
   color: #333333;
-  margin-top: 5rem;
+  margin-top: 4.5rem;
 }
 
 .homeContainer{
@@ -19,12 +19,6 @@ body {
 
 .box{
   width:40%;
-  height:auto;
-  box-sizing: border-box;
-}
-
-.boxvs{
-  width:10%;
   height:auto;
   box-sizing: border-box;
 }
