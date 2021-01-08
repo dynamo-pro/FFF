@@ -1,0 +1,63 @@
+{% extends "fun/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+      <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Upload Your Videos</legend>
+
+
+              <div id="div_id_your_name" class="form-group">
+              <label for="id_your_name" class=" requiredField">Your name<span class="asteriskField">*</span> </label>
+              <div class="">
+                <input type="text" name="your_name" maxlength="20" class="textinput textInput form-control" required id="id_your_name"> </div>
+              </div>
+              <div id="div_id_opponent_name" class="form-group"> <label for="id_opponent_name" class=" requiredField">Opponent name<span class="asteriskField">*</span> </label>
+                <div class="">
+                  <input type="text" name="opponent_name" maxlength="20" class="textinput textInput form-control" required id="id_opponent_name">
+                </div>
+              </div>
+              <div id="div_id_your_video" class="form-group"> <label for="id_your_video" class=" requiredField">Your video<span class="asteriskField">*</span> </label>
+                <div class=""> <input type="file" accept="video/*" name="your_video" class="clearablefileinput form-control-file" required id="id_your_video" onchange="loadFile(event)">
+                </div>
+              </div>
+              <div id="div_id_opponent_video" class="form-group"> <label for="id_opponent_video" class=" requiredField">Opponent video<span class="asteriskField">*</span> </label>
+                <div class=""> <input type="file" accept="video/*" name="opponent_video" class="clearablefileinput form-control-file" required id="id_opponent_video" onchange="loadFile1(event)">
+                </div>
+              </div>
+          </fieldset>
+   <div class="preview">
+     <h4>Preview</h4>
+     <div class="homeContainer">
+       <div class="box">
+         <iframe id="output" style="width:100%;height:auto;"></iframe>
+       </div>
+       <div class="box">
+         <iframe id="output1" style="width:100%;height:auto;"></iframe>
+       </div>
+     </div>
+   </div>
+      <div class="form-group">
+          <button class="btn btn-outline-info" type="submit">Post</button>
+      </div>
+   </form>
+
+    <script>
+      var loadFile1 = function(event) {
+        var output1 = document.getElementById('output1');
+        output1.src = URL.createObjectURL(event.target.files[0]);
+        output1.onload = function() {
+          URL.revokeObjectURL(output1.src) // free memory
+          }
+      };
+
+      var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+    </script>
+{% endblock %}
